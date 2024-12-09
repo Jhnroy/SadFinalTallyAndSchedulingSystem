@@ -2,10 +2,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDO-Integrated Sports Tally & Scheduling System</title>
+    <link rel="stylesheet" href="/CSS/userview.css">
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js"></script> -->
 </head>
 <body>
+    <div class="container">
+        <header class="header">
+          <div class="logo">
+            <img src="/IMG/CNSC Logo - White Border.png" alt="Logo">
+          </div>
+          <h1>SDO-Integrated Sports Tally & Scheduling System</h1>
+          <div class="login" id="login-btn">Management Login</div>
+        </header>
     
+       
+    
+        <main class="main-content">
+          <section class="game-schedule">
+            <h2>Game Schedule</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Game Schedule</th>
+                  <th>Teams</th>
+                  <th>Venue</th>
+                  <th>Sport</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+              </tbody>
+            </table>
+          </section>
+    
+          <section class="intercol-bracket">
+            <h2>Intercol Bracket</h2>
+            <div class="bracket">
+              <div class="bracket-a">
+                <h3>Bracket A</h3>
+                <div class="team-placeholder">Team 1</div>
+                <div class="team-placeholder">Team 2</div>
+              </div>
+              <div class="bracket-b">
+                <h3>Bracket B</h3>
+            <div class="team-placeholder">Team 3</div>
+            <div class="team-placeholder">Team 4</div>
+            </div></div>
+          </section>
+    
+          <section class="current-tally">
+            <h2>Current Tally</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Team Name</th>
+                  <th>Gold</th>
+                  <th>Silver</th>
+                  <th>Bronze</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+              </tbody>
+            </table>
+          </section>
+        </main>
+      </div>
+      <script src="/JS/userview.js"></script>
 </body>
+
 </html>

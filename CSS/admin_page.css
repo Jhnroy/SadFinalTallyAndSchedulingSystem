@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+  
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    display: flex;
+}
+
+.side-bar {
+    background: #800000;
+    height: 100vh;
+}
+.main-content {
+    width: 100%;
+}
+  
