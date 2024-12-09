@@ -1,0 +1,240 @@
+/* General Reset */
+body, * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #600000;
+    color: #fff;
+}
+
+/* Main container layout */
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+}
+
+/* Sidebar styles */
+.sidebar {
+    background-color: #800000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+}
+
+.sidebar .logo img {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.sidebar .menu button {
+    background: #c00000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.sidebar .menu button:hover {
+    background: #ff3333;
+}
+
+/* Content area */
+.content {
+    padding: 20px;
+    background: white;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Bracket Header */
+.bracket-header h1 {
+    text-align: center;
+    color: #800000;
+    margin: 10px 0;
+}
+
+/* Set Teams Section */
+.set-teams {
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.set-teams h2 {
+    color: #600000;
+    margin-bottom: 15px;
+}
+
+.set-teams form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.set-teams form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.set-teams form button {
+    grid-column: 1 / -1;
+    padding: 10px;
+    background: #800000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.set-teams form button:hover {
+    background: #c00000;
+}
+
+/* Brackets */
+.brackets {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.bracket {
+    flex: 1;
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.bracket h2 {
+    color: #600000;
+    margin-bottom: 10px;
+}
+
+.bracket .team {
+    background: #ddd;
+    color: #333;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.bracket .combine {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #800000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.bracket .combine:hover {
+    background: #c00000;
+}
+
+/* Footer */
+.footer {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: #400000;
+    color: white;
+}
+
+.footer .contact-info,
+.footer .stats {
+    font-size: 14px;
+}
+
+/* RESPONSIVE STYLES */
+
+/* Adjust the layout for tablets and smaller screens */
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: 200px 1fr;
+    }
+
+    .sidebar .logo img {
+        width: 80px;
+    }
+
+    .set-teams form {
+        grid-template-columns: 1fr; /* Stack team inputs vertically on tablets */
+    }
+
+    .footer .contact-info,
+    .footer .stats {
+        font-size: 13px;
+    }
+}
+
+/* Adjust the layout for mobile devices */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr; /* Collapse the two-column grid into a single column */
+    }
+
+    .sidebar {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .sidebar .logo img {
+        width: 60px;
+    }
+
+    .sidebar .menu button {
+        width: auto;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    .set-teams form {
+        grid-template-columns: 1fr; /* Stack all input fields vertically for mobile usability */
+    }
+
+    .brackets {
+        flex-direction: column; /* Stack brackets vertically */
+    }
+}
+
+/* Adjust for very small mobile screens */
+@media (max-width: 480px) {
+    .sidebar .menu button {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .set-teams form input,
+    .set-teams form button {
+        font-size: 12px;
+    }
+
+    .content {
+        padding: 5px;
+    }
+}

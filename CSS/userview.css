@@ -141,4 +141,32 @@ body {
 .main-content .current-tally table th,
 .main-content .current-tally table td {
   text-align: center;
+}
+
+#spfooter {
+  width: 100%;
+  height: 24.875rem;
+  background-color: #800000;
+  background-size: cover;
+  color: white;
+  padding: 20px 20px 20px 20px;
+  position: relative;
+  top: 0;
+  bottom: 0;
+}
+
+#spfooter * {
+  color: white;
+  text-decoration: none;
+}
+
+#spfooter a {
+  font-weight: 100;
+  transition: color 0.3s ease;
+  text-decoration: underline;
+}
+
+#spfooter a:hover {
+  color: lightgray;
+  text-decoration: underline;
 }/*# sourceMappingURL=userview.css.map */
