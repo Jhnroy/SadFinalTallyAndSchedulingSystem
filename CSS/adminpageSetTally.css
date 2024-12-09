@@ -1,0 +1,240 @@
+/* Variables */
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #600000;
+  color: #F7F7F7;
+}
+
+/* Container Layout */
+.container {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 80px 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+
+/* Sidebar */
+.sidebar {
+  background: #800000;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .sidebar {
+    padding: 10px;
+  }
+}
+@media (max-width: 480px) {
+  .sidebar {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px 5px;
+  }
+}
+.sidebar .logo img {
+  width: 120px;
+}
+@media (max-width: 768px) {
+  .sidebar .logo img {
+    width: 60px;
+  }
+}
+@media (max-width: 480px) {
+  .sidebar .logo img {
+    width: 40px;
+  }
+}
+.sidebar .menu-btn {
+  width: 80%;
+  padding: 10px;
+  margin: 1rem;
+  border: none;
+  border-radius: 5px;
+  background: #c00000;
+  color: #F7F7F7;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.sidebar .menu-btn:hover {
+  background: #8d0000;
+}
+@media (max-width: 768px) {
+  .sidebar .menu-btn {
+    font-size: 12px;
+    padding: 5px;
+  }
+}
+
+/* Content */
+.content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+@media (max-width: 480px) {
+  .content {
+    padding: 10px;
+  }
+}
+.content .title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #F7F7F7;
+}
+@media (max-width: 768px) {
+  .content .title {
+    font-size: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .content .title {
+    font-size: 16px;
+  }
+}
+.content .team-input {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+@media (max-width: 480px) {
+  .content .team-input {
+    flex-direction: column;
+  }
+}
+.content .team-input .input-field {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #c00000;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.content .team-input .input-field:focus {
+  outline: none;
+  border-color: #f30000;
+}
+.content .team-input .add-btn {
+  background: #c00000;
+  color: #F7F7F7;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.content .team-input .add-btn:hover {
+  background: #8d0000;
+}
+@media (max-width: 768px) {
+  .content .team-input .add-btn {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+}
+@media (max-width: 480px) {
+  .content .team-input .add-btn {
+    width: 100%;
+  }
+}
+.content .team-tally {
+  width: 100%;
+}
+.content .team-tally .team-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr auto;
+  background: #F7F7F7;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  gap: 5px;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .content .team-tally .team-row {
+    grid-template-columns: 1fr 1fr 1fr auto;
+    font-size: 14px;
+  }
+}
+@media (max-width: 480px) {
+  .content .team-tally .team-row {
+    grid-template-columns: 1fr auto;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+.content .team-tally .team-row .medal-count,
+.content .team-tally .team-row .team-name {
+  text-align: center;
+  font-size: 16px;
+}
+@media (max-width: 768px) {
+  .content .team-tally .team-row .medal-count,
+  .content .team-tally .team-row .team-name {
+    font-size: 14px;
+  }
+}
+@media (max-width: 480px) {
+  .content .team-tally .team-row .medal-count,
+  .content .team-tally .team-row .team-name {
+    font-size: 12px;
+  }
+}
+.content .team-tally .team-row .action-buttons {
+  display: flex;
+  gap: 5px;
+}
+@media (max-width: 480px) {
+  .content .team-tally .team-row .action-buttons {
+    flex-wrap: wrap;
+  }
+}
+.content .team-tally .team-row .action-buttons .btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #F7F7F7;
+  cursor: pointer;
+}
+.content .team-tally .team-row .action-buttons .btn.gold {
+  background: #ffcc00;
+}
+.content .team-tally .team-row .action-buttons .btn.gold:hover {
+  background: #ffd633;
+}
+.content .team-tally .team-row .action-buttons .btn.silver {
+  background: silver;
+}
+.content .team-tally .team-row .action-buttons .btn.silver:hover {
+  background: #8b8686;
+}
+.content .team-tally .team-row .action-buttons .btn.bronze {
+  background: #cd7f32;
+}
+.content .team-tally .team-row .action-buttons .btn.bronze:hover {
+  background: #d7995b;
+}/*# sourceMappingURL=adminpageSetTally.css.map */

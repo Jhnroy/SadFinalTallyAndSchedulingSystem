@@ -1,0 +1,246 @@
+/* Variables */
+$primary-color: #800000;
+$secondary-color: #c00000;
+$background-color: #600000;
+$button-color: #ffcc00;
+$text-light: #F7F7F7;
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: $background-color;
+    color: $text-light;
+}
+
+/* Container Layout */
+.container {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    height: 100vh;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 80px 1fr;
+    }
+
+    @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+}
+
+/* Sidebar */
+.sidebar {
+    background: $primary-color;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    @media (max-width: 768px) {
+        padding: 10px;
+    }
+
+    @media (max-width: 480px) {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px 5px;
+    }
+
+    .logo img {
+        width: 120px;
+
+        @media (max-width: 768px) {
+            width: 60px;
+        }
+
+        @media (max-width: 480px) {
+            width: 40px;
+        }
+    }
+
+    .menu-btn {
+        width: 80%;
+        padding: 10px;
+        margin: 1rem;
+        border: none;
+        border-radius: 5px;
+        background: $secondary-color;
+        color: $text-light;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+            background: darken($secondary-color, 10%);
+        }
+
+        @media (max-width: 768px) {
+            font-size: 12px;
+            padding: 5px;
+        }
+    }
+}
+
+/* Content */
+.content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    @media (max-width: 480px) {
+        padding: 10px;
+    }
+
+    .title {
+        font-size: 24px;
+        font-weight: bold;
+        color: $text-light;
+
+        @media (max-width: 768px) {
+            font-size: 20px;
+        }
+
+        @media (max-width: 480px) {
+            font-size: 16px;
+        }
+    }
+
+    .team-input {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+
+        @media (max-width: 480px) {
+            flex-direction: column;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid $secondary-color;
+            border-radius: 5px;
+            font-size: 16px;
+
+            &:focus {
+                outline: none;
+                border-color: lighten($secondary-color, 10%);
+            }
+        }
+
+        .add-btn {
+            background: $secondary-color;
+            color: $text-light;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+
+            &:hover {
+                background: darken($secondary-color, 10%);
+            }
+
+            @media (max-width: 768px) {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+
+            @media (max-width: 480px) {
+                width: 100%;
+            }
+        }
+    }
+
+    .team-tally {
+        width: 100%;
+
+        .team-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr auto;
+            background: $text-light;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            gap: 5px;
+            align-items: center;
+
+            @media (max-width: 768px) {
+                grid-template-columns: 1fr 1fr 1fr auto;
+                font-size: 14px;
+            }
+
+            @media (max-width: 480px) {
+                grid-template-columns: 1fr auto;
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .medal-count,
+            .team-name {
+                text-align: center;
+                font-size: 16px;
+
+                @media (max-width: 768px) {
+                    font-size: 14px;
+                }
+
+                @media (max-width: 480px) {
+                    font-size: 12px;
+                }
+            }
+
+            .action-buttons {
+                display: flex;
+                gap: 5px;
+
+                @media (max-width: 480px) {
+                    flex-wrap: wrap;
+                }
+
+                .btn {
+                    padding: 5px 10px;
+                    border: none;
+                    border-radius: 5px;
+                    font-size: 14px;
+                    color: $text-light;
+                    cursor: pointer;
+
+                    &.gold {
+                        background: $button-color;
+
+                        &:hover {
+                            background: lighten($button-color, 10%);
+                        }
+                    }
+
+                    &.silver {
+                        background: silver;
+
+                        &:hover {
+                            background: lighten(rgb(87, 84, 84), 20%);
+                        }
+                    }
+
+                    &.bronze {
+                        background: #cd7f32;
+
+                        &:hover {
+                            background: lighten(#cd7f32, 10%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
