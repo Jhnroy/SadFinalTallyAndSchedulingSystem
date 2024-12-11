@@ -5,13 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/CSS/admin_page.css">
     <title>Document</title>
+    <script type="module">
+        import {auth} from "../JS/firebase_config.js"
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User is logged in:", user.email);
+                // window.location.href = "admin_page.html";
+                document.getElementById("profile_name").innerText = user.email;
+                document.getElementById("profile_image").innerText = user.email.charAt(0).toUpperCase();
+            } else {
+                console.log("No user is logged in");
+                window.location.href = "login.html";
+            }
+        });
+    </script>
 </head>
 <body>
-    <section class="side-bar">
-        side-bar
-    </section>
-    <main class="main-content">
-        main
-    </main>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="/IMG/CNSC Logo - White Border.png" alt="CNSC Logo">
+            </div>
+            <nav class="menu">
+                <button id="nav_schedule">Set Schedule</button>
+                <button id="nav_tally">Set Tally</button>
+                <button id="nav_bracket">Set Bracket</button>
+            </nav>
+            <div class="profile_container">
+                <div class="profile_image" id="profile_image">S</div>
+                <div class="profile_name" id="profile_name">SDO@email.com</div>
+            </div>
+            <div class="logout_btn" id="logout_btn">Logout</div>
+        </aside>
+
+        <main class="content">
+            <div>
+                <h1 id="getAllSchedule">Set Schedule</h1>
+                <form>
+                    <label>Game:</label><input placeholder="Input Game" type="text" id="input_game_name"/>
+                    <label>Teams:</label><select name="teams" id="teams_dropdown">
+                        <option value="select-team">Select Teams</option>
+                    </select>
+                    <label>Venue:</label>
+                    <select id="venues" name="venues">
+                        <option value="computer-lab">Computer Lab</option>
+                        <option value="covered-court">Covered Court</option>
+                        <option value="eco-field">Eco Field</option>
+                        <option value="library">Library</option>
+                        <option value="pavilion">Pavilion</option>
+                        <option value="student-center">Student Center</option>
+                    </select>
+                    <label>Sport:</label>
+                    <select id="events" name="events">
+                        <option value="arnis">Arnis</option>
+                        <option value="athletics">Athletics</option>
+                        <option value="badminton">Badminton</option>
+                        <option value="basketball">Basketball</option>
+                        <option value="beach-volleyball">Beach Volleyball</option>
+                        <option value="chess">Chess</option>
+                        <option value="dance-sport">Dance Sport</option>
+                        <option value="futsal">Futsal</option>
+                        <option value="mass-demo">Mass Demo</option>
+                        <option value="mobile-legends">Mobile Legends</option>
+                        <option value="pencak-silat">Pencak Silat</option>
+                        <option value="sepak-takraw">Sepak Takraw</option>
+                        <option value="soccer">Soccer</option>
+                        <option value="table-tennis">Table Tennis</option>
+                        <option value="taekwondo">Taekwondo</option>
+                        <option value="volleyball">Volleyball</option>
+                    </select>
+                    <div class="date-time">
+                        <label>Date:</label><input type="date"/>
+                        <label>Time:</label><input type="time"/>
+                    </div>
+                    <button type="submit" id="set-schedule-btn">Set Schedule</button>
+                </form>
+
+                <table id="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Game Name</th>
+                            <th>Teams</th>
+                            <th>Venue</th>
+                            <th>Sport</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="contact-info">
+                <p><strong>Contact Information</strong></p>
+                <p>Sports Development Office</p>
+                <p>Email: sports@cnsc.edu</p>
+                <p>Phone: 123-456-789</p>
+            </div>
+            <div class="stats">
+                <p><strong>Visitors</strong></p>
+                <p>Today: 79</p>
+                <p>Week: 1149</p>
+                <p>All Time: 38,000+</p>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="/JS/admin_page.js"></script>
 </body>
 </html>

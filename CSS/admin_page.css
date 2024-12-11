@@ -10,11 +10,276 @@ body {
     display: flex;
 }
 
-.side-bar {
-    background: #800000;
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr auto;
     height: 100vh;
-}
-.main-content {
     width: 100%;
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    height: 100%;
+    background-color: #800000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+  }
+  
+  .sidebar .logo img {
+    width: 100px;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar .menu button {
+    background: #c00000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+  }
+
+  .sidebar .menu button:nth-child(1) {
+    border: solid #f5f5f5 2px;
+  }
+  
+  .sidebar .menu button:hover {
+    background: #ff3333;
+  }
+  
+  /* Content area */
+  .content {
+    padding: 20px;
+    background: #f5f5f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* form {
+    display: flex;
+    flex-direction: column;
+    width: 18rem;
+  }
+  form div {
+    display: flex;
+    margin-top: .675rem;
+  } */
+
+  form {
+    max-width: 400px;
+    margin: 20px 20px 0px 0px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    font-family: Arial, sans-serif;
+  }
+
+  /* Label Styling */
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* Input and Select Styling */
+  input[type="text"],
+  input[type="date"],
+  input[type="time"],
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #555;
+    box-sizing: border-box;
+  }
+
+  input::placeholder {
+    color: #aaa;
+  }
+
+  /* Input and Select Focus Effect */
+  input:focus,
+  select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  /* Div Styling for Date and Time Fields */
+  .date-time {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  div input[type="date"],
+  div input[type="time"] {
+    flex: 1;
+  }
+  #set-schedule-btn {
+    background-color: #800000;
+    border-radius: 7px;
+    border: solid #800000 2px;
+    color: white;
+    font-weight: 600;
+    width: 100%;
+    padding: 12px;
+    cursor: pointer;
+  }
+
+  /* Sidebar profile */
+  .profile_container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: left;
+    width: 100%;
+    margin-top: auto;
+  }
+  .profile_image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c00000;
+    font-size: large;
+    font-weight: 600;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    background: #f5f5f5;
+  }
+  .profile_name {
+    color: white;
+  }
+  .logout_btn {
+    cursor: pointer ;
+  }
+
+
+   /* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+th {
+  background-color: #800000;
+  color: white;
+  font-weight: bold;
+}
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+tr:hover {
+  background-color: #f1f1f1;
+}
+.action-btn {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+.edit-btn {
+    background-color: #4CAF50; /* Green */
+}
+.delete-btn {
+    background-color: #f44336; /* Red */
 }
   
+  /* Footer */
+  .footer {
+    height: fit-content;
+    grid-column: 1/-1;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: #400000;
+    color: white;
+  }
+  
+  .footer .contact-info,
+  .footer .stats {
+    font-size: 14px;
+  }
+  
+  /* RESPONSIVE STYLES */
+  /* Adjust the layout for tablets and smaller screens */
+  @media (max-width: 1024px) {
+    .container {
+      grid-template-columns: 200px 1fr;
+    }
+    .sidebar .logo img {
+      width: 80px;
+    }
+    .set-teams form {
+      grid-template-columns: 1fr; /* Stack team inputs vertically on tablets */
+    }
+    .footer .contact-info,
+    .footer .stats {
+      font-size: 13px;
+    }
+  }
+  /* Adjust the layout for mobile devices */
+  @media (max-width: 768px) {
+    .container {
+      grid-template-columns: 1fr; /* Collapse the two-column grid into a single column */
+    }
+    .sidebar {
+      flex-direction: row;
+      justify-content: space-around;
+      height: fit-content;
+    }
+    .sidebar .logo img {
+      width: 60px;
+    }
+    .sidebar .menu button {
+      width: auto;
+    }
+    .content {
+      padding: 10px;
+    }
+    .set-teams form {
+      grid-template-columns: 1fr; /* Stack all input fields vertically for mobile usability */
+    }
+    .brackets {
+      flex-direction: column; /* Stack brackets vertically */
+    }
+  }
+  /* Adjust for very small mobile screens */
+  @media (max-width: 480px) {
+    .sidebar .menu button {
+      padding: 8px;
+      font-size: 12px;
+    }
+    .footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .set-teams form input,
+    .set-teams form button {
+      font-size: 12px;
+    }
+    .content {
+      padding: 5px;
+    }
+  }/*# sourceMappingURL=adminpageSetBracket.css.map */

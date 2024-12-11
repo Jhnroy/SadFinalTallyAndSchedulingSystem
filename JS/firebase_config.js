@@ -7,6 +7,7 @@ import { getDatabase } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-
 const firebaseConfig = {
     apiKey: "AIzaSyByY9E9dFEVCOZDYoye1BLnYML7IkJW8f8",
     authDomain: "sdo-application.firebaseapp.com",
+    databaseURL:"https://sdo-application-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "sdo-application",
     storageBucket: "sdo-application.firebasestorage.app",
     messagingSenderId: "359061056327",

@@ -16,6 +16,21 @@
       <link rel="shortcut icon" type="x-icon" href="/IMG/CNSC Logo - White Border.png">
     <title>Intercollegiate Meet Tally</title>
     <link rel="stylesheet" href="/CSS/adminpageSetTally.css">
+    <script type="module">
+        import {auth} from "../JS/firebase_config.js"
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User is logged in:", user.email);
+                document.getElementById("profile_name").innerText = user.email;
+                document.getElementById("profile_image").innerText = user.email.charAt(0).toUpperCase();
+                // window.location.href = "admin_page.html";
+            } else {
+                console.log("No user is logged in");
+                window.location.href = "login.html";
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="container">
@@ -25,40 +40,35 @@
                 <img src="/IMG/CNSC Logo - White Border.png" alt="CNSC Logo">
             </div>
             <nav class="menu">
-                <button class="menu-btn">Set Schedule</button>
-                <button class="menu-btn">Set Tally</button>
-                <button class="menu-btn">Set Bracket</button>
+                <button class="menu-btn" id="nav_schedule">Set Schedule</button>
+                <button class="menu-btn" id="nav_tally">Set Tally</button>
+                <button class="menu-btn" id="nav_bracket">Set Bracket</button>
             </nav>
+            <div class="profile_container">
+                <div class="profile_image" id="profile_image">S</div>
+                <div class="profile_name" id="profile_name">SDO@email.com</div>
+            </div>
+            <div class="logout_btn" id="logout_btn">Logout</div>
         </aside>
 
         <!-- Main Content -->
         <main class="content">
             <h1 class="title">Intercollegiate Meet Tally</h1>
+        
             <form class="team-input">
-                <input type="text" placeholder="Enter Team Name" class="input-field">
+                <!-- Dropdown for team selection -->
+                <select id="team-dropdown" class="input-field">
+                    <option value="" disabled selected>Select a Team</option>
+                </select>
                 <button type="submit" class="add-btn">Add</button>
             </form>
-
-            <div class="team-tally">
-                <div class="team-row">
-                    <span class="team-name">Team Name</span>
-                    <span class="medal-count">Gold: 0</span>
-                    <span class="medal-count">Silver: 0</span>
-                    <span class="medal-count">Bronze: 0</span>
-                    <span class="action-buttons">
-                        <!-- Gold Medal -->
-                        <button class="btn gold">Gold +</button>
-                        <button class="btn minus gold">Gold -</button>
-                        <!-- Silver Medal -->
-                        <button class="btn silver">Silver +</button>
-                        <button class="btn minus silver">Silver -</button>
-                        <!-- Bronze Medal -->
-                        <button class="btn bronze">Bronze +</button>
-                        <button class="btn minus bronze">Bronze -</button>
-                    </span>
-                </div>
+        
+            <div class="team-tally" id="team-tally">
+                <!-- Team rows will be dynamically added here -->
             </div>
         </main>
     </div>
+
+    <script type="module" src="/JS/adminpageSetTally.js"></script>
 </body>
 </html>
