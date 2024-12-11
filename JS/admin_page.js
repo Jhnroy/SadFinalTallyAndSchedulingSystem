@@ -209,11 +209,6 @@ window.addEventListener("DOMContentLoaded", () => {
   createScheduleTable()
 });
 
-// Example action functions
-function editGame(row) {
-  alert(`Edit clicked for game: ${row.cells[0].textContent}`);
-}
-
 function deleteGame(row) {
   const scheduleId = row.getAttribute("data-id"); // Get the unique ID
   const gameName = row.cells[0].textContent; // Get the game name from the first cell
@@ -357,6 +352,113 @@ function formatDropdownValue(value) {
       .split('-') // Split the value by dashes
       .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
       .join(' '); // Join the words with a space
+}
+
+let editingScheduleId = null; // Global variable to track the schedule being edited
+
+function editGame(row) {
+    // Get the schedule ID from the row
+    const scheduleId = row.getAttribute("data-id");
+    const cells = row.cells;
+
+    // Prefill the form with data from the selected schedule
+    document.getElementById("input_game_name").value = cells[0].textContent; // Game Name
+    document.getElementById("teams_dropdown").value = cells[1].textContent; // Teams
+    document.getElementById("venues").value = formatDropdownValue(cells[2].textContent); // Venue
+    document.getElementById("events").value = formatDropdownValue(cells[3].textContent); // Sport
+    document.querySelector(".date-time input[type='date']").value = cells[4].textContent; // Date
+    document.querySelector(".date-time input[type='time']").value = formatTimeForInput(cells[5].textContent); // Time
+
+    // Change button text to "Update Schedule"
+    const scheduleButton = document.getElementById("set-schedule-btn");
+    scheduleButton.textContent = "Update Schedule";
+
+    // Store the ID of the schedule being edited
+    editingScheduleId = scheduleId;
+
+    // Update event listener for updating the schedule
+    scheduleButton.removeEventListener("click", setScheduleToDatabase);
+    scheduleButton.addEventListener("click", updateScheduleToDatabase);
+}
+
+async function updateScheduleToDatabase(event) {
+    event.preventDefault(); // Prevent form submission
+
+    if (!editingScheduleId) {
+        alert("No schedule selected for editing.");
+        return;
+    }
+
+    // Retrieve updated form inputs
+    const gameName = document.getElementById("input_game_name").value.trim();
+    const teamsDropdown = document.getElementById("teams_dropdown");
+    const selectedTeams = teamsDropdown.value;
+    const venuesDropdown = document.getElementById("venues");
+    const selectedVenue = formatDropdownValue(venuesDropdown.value);
+    const eventsDropdown = document.getElementById("events");
+    const selectedEvent = formatDropdownValue(eventsDropdown.value);
+    const dateInput = document.querySelector(".date-time input[type='date']").value;
+    const timeInput = formatTimeWithAMPM(document.querySelector(".date-time input[type='time']").value);
+
+    // Validate inputs
+    if (!gameName) {
+        alert("Please enter a game name.");
+        return;
+    }
+    if (selectedTeams === "select-team") {
+        alert("Please select teams.");
+        return;
+    }
+    if (!dateInput || !timeInput) {
+        alert("Please select both date and time.");
+        return;
+    }
+
+    // Create the updated schedule object
+    const updatedSchedule = {
+        name: gameName,
+        teams: selectedTeams,
+        venue: selectedVenue,
+        sport: selectedEvent,
+        date: dateInput,
+        time: timeInput,
+    };
+
+    try {
+        // Update the schedule in Firebase
+        const scheduleRef = ref(db, `schedules/${editingScheduleId}`);
+        await push(scheduleRef, updatedSchedule);
+
+        // Update the schedule in the local array
+        const index = allSchedule.findIndex(schedule => schedule.id === editingScheduleId);
+        if (index !== -1) {
+            allSchedule[index] = { id: editingScheduleId, ...updatedSchedule };
+        }
+
+        // Refresh the table with updated data
+        populateTable("#schedule-table", allSchedule);
+
+        // Reset form and button state
+        clearFormInputs();
+        document.getElementById("set-schedule-btn").textContent = "Set Schedule";
+        document.getElementById("set-schedule-btn").removeEventListener("click", updateScheduleToDatabase);
+        document.getElementById("set-schedule-btn").addEventListener("click", setScheduleToDatabase);
+
+        editingScheduleId = null; // Reset editing state
+        alert("Schedule updated successfully!");
+    } catch (error) {
+        console.error("Error updating schedule:", error);
+        alert("Failed to update schedule. Please try again.");
+    }
+}
+
+function formatTimeForInput(time) {
+    // Convert time from "12:30 PM" format to "12:30" (for input[type='time'])
+    const [timePart, modifier] = time.split(" ");
+    let [hours, minutes] = timePart.split(":").map(Number);
+    if (modifier === "PM" && hours < 12) hours += 12;
+    if (modifier === "AM" && hours === 12) hours = 0;
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 }
 
 function formatTimeWithAMPM(time) {
