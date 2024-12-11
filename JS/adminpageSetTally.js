@@ -44,11 +44,19 @@ async function loadTeams() {
       const teams = new Set(); // Use a Set to avoid duplicates
 
       if (bracketASnapshot.exists()) {
-          Object.values(bracketASnapshot.val()).forEach(team => teams.add(team));
+          Object.values(bracketASnapshot.val()).forEach(team => {
+              if (!team.includes("Team")) { // Filter out teams with "Team" in the name
+                  teams.add(team);
+              }
+          });
       }
 
       if (bracketBSnapshot.exists()) {
-          Object.values(bracketBSnapshot.val()).forEach(team => teams.add(team));
+          Object.values(bracketBSnapshot.val()).forEach(team => {
+              if (!team.includes("Team")) { // Filter out teams with "Team" in the name
+                  teams.add(team);
+              }
+          });
       }
 
       // Exclude teams already present in the tally
@@ -66,6 +74,7 @@ async function loadTeams() {
       console.error("Error loading teams:", error);
   }
 }
+
 
 
 // Handle form submission to add a team
@@ -196,10 +205,29 @@ function addTeamRow(teamName, medalData = { gold: 0, silver: 0, bronze: 0 }) {
       actionButtons.appendChild(decrementButton);
   });
 
+  // Add Delete Button
+  const deleteButton = document.createElement("button");
+  deleteButton.className = "btn delete-btn";
+  deleteButton.textContent = "Delete";
+  deleteButton.addEventListener("click", async () => {
+      const confirmed = confirm(`Are you sure you want to delete ${teamName}?`);
+      if (confirmed) {
+          // Delete the team from the database
+          const teamRef = ref(db, `tally/${teamName}`);
+          await set(teamRef, null); // This will remove the team from the database
+
+          // Remove the team row from the UI
+          row.remove();
+          console.log(`Team ${teamName} deleted successfully.`);
+      }
+  });
+  actionButtons.appendChild(deleteButton);
+
   row.appendChild(actionButtons);
 
   teamTally.appendChild(row);
 }
+
 
 // Load teams and tally on page load
 (async function initializePage() {

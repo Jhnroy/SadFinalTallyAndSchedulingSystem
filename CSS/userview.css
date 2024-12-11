@@ -152,7 +152,7 @@ body {
 }
 .main-content .current-tally table th,
 .main-content .current-tally table td {
-  text-align: center;
+  text-align: start;
 }
 
 #spfooter {

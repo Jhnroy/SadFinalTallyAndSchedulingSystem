@@ -139,3 +139,47 @@ setTeamBtn.addEventListener("click", (event) => {
     event.preventDefault();
     updateModifiedInputs();
 });
+document.addEventListener("DOMContentLoaded", () => {
+    // Select all clear buttons
+    const clearBracketButtons = document.querySelectorAll(".clear-bracket-btn");
+
+    // Add click event listeners to each button
+    clearBracketButtons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+            // Retrieve the bracket identifier from the button's dataset
+            const bracket = event.target.dataset.bracket;
+    
+            // Find the corresponding teams within the selected bracket
+            const bracketElement = document.querySelector(`.${bracket.replace('_', '-')}`);
+            if (bracketElement) {
+                const teams = bracketElement.querySelectorAll(".team");
+                const updates = {};
+    
+                // Calculate the starting number based on the bracket
+                let startNumber = bracket === "bracket-a" ? 1 : 5;
+    
+                // Reset each team and prepare updates for the database
+                teams.forEach((team, index) => {
+                    const teamNumber = startNumber + index; // Adjusted to account for bracket offset
+                    const newTeamName = `Team ${teamNumber}`;
+                    team.textContent = newTeamName;
+    
+                    // Prepare updates for the database
+                    updates[`input_${teamNumber}`] = newTeamName;
+                });
+    
+                // Save cleared data to the database
+                const bracketRef = bracket === "bracket-a" ? bracket_a_ref : bracket_b_ref;
+                update(bracketRef, updates)
+                    .then(() => {
+                        console.log(`${bracket} cleared and updated successfully!`);
+                    })
+                    .catch((error) => {
+                        console.error(`Error updating ${bracket}:`, error);
+                    });
+            } else {
+                console.error(`Bracket ${bracket} not found!`);
+            }
+        });
+    });    
+});

@@ -96,6 +96,23 @@ body {
   margin: 10px 0;
 }
 
+.clear-bracket-btn {
+  margin-left: 10px;
+  padding: 5px 15px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.clear-bracket-btn:hover {
+  background-color: #cc0000;
+}
+
+
 /* Set Teams Section */
 .set-teams {
   padding: 20px;
@@ -153,6 +170,9 @@ body {
 
 .bracket h2 {
   color: #600000;
+  display: flex;
+  justify-content: space-between; /* Pushes the button to the end */
+  align-items: center; /* Vertically aligns text and button */
   margin-bottom: 10px;
 }
 
