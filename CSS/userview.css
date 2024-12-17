@@ -16,11 +16,6 @@ body {
 }
 
 .header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  
   background-color: #800000;
   color: #fff;
   text-align: center;
@@ -28,19 +23,12 @@ body {
   width: 100%;
 }
 .header .logo img {
-  width: 70px;
+  width: 50px;
   margin-right: 10px;
 }
 .header h1 {
   margin: 0;
   font-size: 1.5rem;
-}
-.header .login {
-  font-weight: 500;
-  border-radius: 24px;
-  padding: 8px 24px;
-  border: #f5f5f5 solid 1px;
-  cursor: pointer;
 }
 
 .nav {
@@ -152,7 +140,7 @@ body {
 }
 .main-content .current-tally table th,
 .main-content .current-tally table td {
-  text-align: start;
+  text-align: center;
 }
 
 #spfooter {

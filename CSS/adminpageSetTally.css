@@ -15,7 +15,6 @@ body {
 /* Container Layout */
 .container {
   margin: 0;
-  padding: 0;
   display: grid;
   grid-template-columns: 250px 1fr;
   height: 100vh;
@@ -81,36 +80,6 @@ body {
 }
 .sidebar .menu-btn:hover {
   background: #8d0000;
-}
-.sidebar .menu button:nth-child(2) {
-  border: solid #f5f5f5 2px;
-}
-
-.profile_container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  justify-content: left;
-  width: 100%;
-  margin-top: auto;
-}
-.profile_image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #c00000;
-  font-size: large;
-  font-weight: 600;
-  border-radius: 100%;
-  width: 50px;
-  height: 50px;
-  background: #f5f5f5;
-}
-.profile_name {
-  color: white;
-}
-.logout_btn {
-  cursor: pointer ;
 }
 @media (max-width: 768px) {
   .sidebar .menu-btn {
@@ -204,36 +173,6 @@ body {
   gap: 5px;
   align-items: center;
 }
-
-
-
-.delete-btn {
-  background-color: #dc3545; /* Red color */
-  color: white; /* White text */
-  border: none; /* No border */
-  padding: 5px 10px; /* Padding for better size */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-weight: bold; /* Bold text */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover transition */
-}
-
-.delete-btn:hover {
-  background-color: #c82333; /* Darker red for hover */
-  transform: scale(1.05); /* Slightly enlarge on hover */
-}
-
-.delete-btn:active {
-  background-color: #bd2130; /* Even darker red on click */
-  transform: scale(1); /* Return to normal size when clicked */
-}
-
-.delete-btn:focus {
-  outline: none; /* Remove focus outline */
-}
-
-
-
 @media (max-width: 768px) {
   .content .team-tally .team-row {
     grid-template-columns: 1fr 1fr 1fr auto;
